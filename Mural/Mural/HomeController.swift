@@ -8,9 +8,14 @@
 import UIKit
 
 class HomeController: UIViewController {
+    
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let carousel = UICollectionView(frame: .zero, collectionViewLayout: UPCarouselFlowLayout())
+        
         // Do any additional setup after loading the view.
     }
 
