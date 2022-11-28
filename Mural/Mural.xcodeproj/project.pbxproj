@@ -19,6 +19,7 @@
 		B04483382934991500625078 /* DrawingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04483372934991500625078 /* DrawingController.swift */; };
 		B044833A29349D5A00625078 /* GalleryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B044833929349D5A00625078 /* GalleryController.swift */; };
 		B044833C29349F4900625078 /* ScreenPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B044833B29349F4900625078 /* ScreenPreviewView.swift */; };
+		B044833E2934A1E900625078 /* UPCarouselFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B044833D2934A1E900625078 /* UPCarouselFlowLayout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		B04483372934991500625078 /* DrawingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingController.swift; sourceTree = "<group>"; };
 		B044833929349D5A00625078 /* GalleryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryController.swift; sourceTree = "<group>"; };
 		B044833B29349F4900625078 /* ScreenPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenPreviewView.swift; sourceTree = "<group>"; };
+		B044833D2934A1E900625078 /* UPCarouselFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UPCarouselFlowLayout.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +117,7 @@
 				B0448312293475B900625078 /* LaunchScreen.storyboard */,
 				B0448315293475B900625078 /* Info.plist */,
 				B044833929349D5A00625078 /* GalleryController.swift */,
+				B044833D2934A1E900625078 /* UPCarouselFlowLayout.swift */,
 			);
 			path = Mural;
 			sourceTree = "<group>";
@@ -273,6 +276,7 @@
 				B0448308293475B600625078 /* AppDelegate.swift in Sources */,
 				B04483382934991500625078 /* DrawingController.swift in Sources */,
 				B044830A293475B600625078 /* SceneDelegate.swift in Sources */,
+				B044833E2934A1E900625078 /* UPCarouselFlowLayout.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
