@@ -18,6 +18,7 @@
 		B044832B293475BA00625078 /* MuralUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B044832A293475BA00625078 /* MuralUITestsLaunchTests.swift */; };
 		B04483382934991500625078 /* DrawingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04483372934991500625078 /* DrawingController.swift */; };
 		B044833A29349D5A00625078 /* GalleryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B044833929349D5A00625078 /* GalleryController.swift */; };
+		B044833C29349F4900625078 /* ScreenPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B044833B29349F4900625078 /* ScreenPreviewView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		B044832A293475BA00625078 /* MuralUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MuralUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		B04483372934991500625078 /* DrawingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingController.swift; sourceTree = "<group>"; };
 		B044833929349D5A00625078 /* GalleryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryController.swift; sourceTree = "<group>"; };
+		B044833B29349F4900625078 /* ScreenPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenPreviewView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +107,7 @@
 			children = (
 				B0448307293475B600625078 /* AppDelegate.swift */,
 				B0448309293475B600625078 /* SceneDelegate.swift */,
+				B044833B29349F4900625078 /* ScreenPreviewView.swift */,
 				B044830B293475B600625078 /* HomeController.swift */,
 				B04483372934991500625078 /* DrawingController.swift */,
 				B044830D293475B600625078 /* Main.storyboard */,
@@ -264,6 +267,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B044833C29349F4900625078 /* ScreenPreviewView.swift in Sources */,
 				B044833A29349D5A00625078 /* GalleryController.swift in Sources */,
 				B044830C293475B600625078 /* HomeController.swift in Sources */,
 				B0448308293475B600625078 /* AppDelegate.swift in Sources */,
