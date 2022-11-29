@@ -136,14 +136,14 @@ extension HomeController: UICollectionViewDataSource {
 
 
 
-//extension HomeController: UICollectionViewDelegate {
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        let drawingVC = DrawingController()
-////        drawingVC.image = UIImage(named: self.imageNames[indexPath.item])
-////        self.navigationController?.pushViewController(drawingVC, animated: true)
-////        present(drawingVC, animated: true)
-//    }
-//}
+extension HomeController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let drawingVC = DrawingController()
+//        drawingVC.image = UIImage(named: self.imageNames[indexPath.item])
+//        self.navigationController?.pushViewController(drawingVC, animated: true)
+        present(drawingVC, animated: true)
+    }
+}
 
 extension HomeController: UICollectionViewDelegateFlowLayout {
 
