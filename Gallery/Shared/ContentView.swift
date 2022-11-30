@@ -7,7 +7,7 @@
 
 import UIKit
 
-class GalleryController: UIViewController {
+class ContentView: UIViewController {
     
     let teams: [String] = [
         "iOS",
