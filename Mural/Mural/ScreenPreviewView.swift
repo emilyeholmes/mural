@@ -13,9 +13,10 @@ class ScreenPreviewView: UICollectionViewCell {
     var prompt: String?
     var name: String?
     var team: String?
+    var hasBeenEdited: Bool
     
     override init(frame: CGRect) {
-
+        hasBeenEdited = false
         super.init(frame: .zero)
 
     }

@@ -75,19 +75,55 @@ class HomeController: UIViewController {
         return l
     }()
     
+    let currTeamLabel = {
+        let l = UILabel(frame: .zero)
+        l.font = UIFont(name: "Futura-Medium", size: 20.0)
+        l.textColor = .init(red: 117/255.0, green: 115/255.0, blue: 210/255.0, alpha: 0.6)
+        l.numberOfLines = 0
+        l.translatesAutoresizingMaskIntoConstraints = false
+        return l
+    }()
+    
+    
+    var currentPage: Int = 0 {
+            didSet {
+                let prompt = self.prompts[self.currentPage]
+                let team = self.teamNames[self.currentPage]
+                self.label.text = prompt
+                self.currTeamLabel.text = team
+            }
+        }
+    
+    var pageSize: CGSize {
+            let layout = self.cv.collectionViewLayout as! UPCarouselFlowLayout
+            var pageSize = layout.itemSize
+            if layout.scrollDirection == .horizontal {
+                pageSize.width += layout.minimumLineSpacing
+            } else {
+                pageSize.height += layout.minimumLineSpacing
+            }
+            return pageSize
+        }
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.currentPage = 0
+        
         // Add prompt label
         view.addSubview(logo)
+        view.addSubview(currTeamLabel)
         view.addSubview(label)
         NSLayoutConstraint.activate([
             logo.topAnchor.constraint(equalTo: view.topAnchor, constant: 57),
             logo.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             label.topAnchor.constraint(equalTo: view.topAnchor, constant: 150),
-            label.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            label.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 20)
-//            label.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+            label.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+            label.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
+            currTeamLabel.leadingAnchor.constraint(equalTo: label.leadingAnchor),
+            currTeamLabel.bottomAnchor.constraint(equalTo: label.topAnchor, constant: -10)
         ])
         
         self.view.backgroundColor = .white
@@ -127,8 +163,8 @@ extension HomeController: UICollectionViewDataSource {
         cell.layer.borderWidth = 1
         cell.layer.cornerRadius = 10
         
-        self.currText = self.prompts[indexPath.item]
-        updateLabel()
+//        self.currText = self.prompts[indexPath.item]
+//        updateLabel()
         
         return cell
     }
@@ -138,9 +174,11 @@ extension HomeController: UICollectionViewDataSource {
 
 extension HomeController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath) as! ScreenPreviewView
+        cell.hasBeenEdited = true
         let drawingVC = DrawingController()
-//        drawingVC.image = UIImage(named: self.imageNames[indexPath.item])
-//        self.navigationController?.pushViewController(drawingVC, animated: true)
+    //        drawingVC.image = UIImage(named: self.imageNames[indexPath.item])
+    //        self.navigationController?.pushViewController(drawingVC, animated: true)
         present(drawingVC, animated: true)
     }
 }
@@ -150,6 +188,15 @@ extension HomeController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
         {
            return CGSize(width: 150.0, height: 200.0)
+        }
+}
+
+extension HomeController: UIScrollViewDelegate {
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+            let layout = self.cv.collectionViewLayout as! UPCarouselFlowLayout
+            let pageSide = (layout.scrollDirection == .horizontal) ? self.pageSize.width : self.pageSize.height
+            let offset = (layout.scrollDirection == .horizontal) ? scrollView.contentOffset.x : scrollView.contentOffset.y
+            currentPage = Int(floor((offset - pageSide / 2) / pageSide) + 1)
         }
 }
 
