@@ -80,7 +80,7 @@ class GalleryController: UIViewController {
             let view: UIView = {
                 
                 let view = UIView()
-                view.heightAnchor.constraint(equalToConstant: 300).isActive = true
+                view.heightAnchor.constraint(equalToConstant: 260).isActive = true
                 
                 let label: UILabel = {
                     let l = UILabel(frame: .zero)
@@ -102,10 +102,20 @@ class GalleryController: UIViewController {
                     
                     var drawingViews: [UIView] = []
                     
-                    for drawing in images {
+                    var randIndices: [Int] = []
+
+                    for _ in 0..<3 {
+                        var randIndex = Int.random(in: 0..<images.count)
+                        while (randIndices.contains(randIndex)) {
+                            randIndex = Int.random(in: 0..<images.count)
+                        }
+                        randIndices.append(contentsOf: [randIndex])
+                    }
+                    
+                    for index in randIndices {
                         let view: UIView = {
                             let v = UIImageView()
-                            v.image = drawing
+                            v.image = images[index]
                             v.contentMode = .scaleAspectFit
 //                            v.backgroundColor = UIColor(patternImage: drawing)
                             v.translatesAutoresizingMaskIntoConstraints = false
@@ -143,7 +153,7 @@ class GalleryController: UIViewController {
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 70),
-            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -90)
         ])
 
         NSLayoutConstraint.activate([
