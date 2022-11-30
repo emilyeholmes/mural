@@ -24,6 +24,15 @@ class DrawingController: UIViewController {
         return pb
     }()
     
+    let promptLabel: UILabel = {
+        let l = UILabel(frame: .zero)
+        l.font = UIFont(name: "Futura-Medium", size: 18.0)
+        l.textColor = .init(red: 117/255.0, green: 115/255.0, blue: 210/255.0, alpha: 1.0)
+        l.numberOfLines = 0
+        l.translatesAutoresizingMaskIntoConstraints = false
+        return l
+    }()
+    
     weak var home: HomeController!
     
     private let canvasView: PKCanvasView = {
@@ -69,6 +78,7 @@ class DrawingController: UIViewController {
         view.addSubview(canvasView)
         
         view.addSubview(progressBar)
+        view.addSubview(promptLabel)
         // Progress bar idea: just make a UIView, round corners, fill background color
         progressBarWidthConstraint = progressBar.widthAnchor.constraint(equalToConstant: 0)
         NSLayoutConstraint.activate([
@@ -78,6 +88,11 @@ class DrawingController: UIViewController {
             progressBar.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25)
         ])
         progressBar.layer.cornerRadius = 3
+        
+        NSLayoutConstraint.activate([
+            promptLabel.topAnchor.constraint(equalTo: progressBar.bottomAnchor, constant: 15),
+            promptLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+        ])
     }
     
     override func viewDidLayoutSubviews() {

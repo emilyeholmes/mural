@@ -76,7 +76,7 @@ class HomeController: UIViewController {
             let layout = UPCarouselFlowLayout()
             layout.itemSize = CGSizeMake(150, 200)
             layout.scrollDirection = .horizontal
-            layout.spacingMode = UPCarouselFlowLayoutSpacingMode.overlap(visibleOffset: 30.0)
+            layout.spacingMode = UPCarouselFlowLayoutSpacingMode.fixed(spacing: 45)
             return layout
         }())
         cv.translatesAutoresizingMaskIntoConstraints = false
@@ -194,7 +194,7 @@ extension HomeController: UICollectionViewDataSource {
         cell.setImage()
         
         cell.layer.borderColor = .init(red: 1.0, green: 210/255.0, blue: 95/255.0, alpha: 1.0)
-        cell.layer.borderWidth = 1
+        cell.layer.borderWidth = 3
         cell.layer.cornerRadius = 10
         
 //        self.currText = self.prompts[indexPath.item]
@@ -211,6 +211,7 @@ extension HomeController: UICollectionViewDelegate {
         let cell = collectionView.cellForItem(at: indexPath) as! ScreenPreviewView
         cell.hasBeenEdited = true
         let drawingVC = DrawingController()
+        drawingVC.promptLabel.text = cell.prompt
         drawingVC.modalPresentationStyle = .fullScreen
         drawingVC.name = cell.prompt
     //        drawingVC.image = UIImage(named: self.imageNames[indexPath.item])
