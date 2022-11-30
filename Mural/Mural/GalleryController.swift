@@ -20,7 +20,11 @@ class GalleryController: UIViewController {
         UIImage(named: "DarthVader")!,
         UIImage(named: "Lasagna")!,
         UIImage(named: "Turtle")!,
-        UIImage(named: "Ocean")!
+        UIImage(named: "Ocean")!,
+        UIImage(named: "jeff")!,
+        UIImage(named: "michael")!,
+        UIImage(named: "turtledrawing")!,
+        UIImage(named: "spikeball")!,
     ]
     
     private let plusButton: UIButton = {

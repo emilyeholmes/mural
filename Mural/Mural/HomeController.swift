@@ -26,7 +26,11 @@ class HomeController: UIViewController {
         "Emily fighting Darth Vader",
         "Jennifer cooking lasagna",
         "A chill turtle",
-        "A day at the beach"
+        "A day at the beach",
+        "Jeff gets COVID",
+        "Michael goes skiing",
+        "Ethan draws turtle",
+        "Playing spikeball on the glade"
     ]
     
     let imageNames: [String] = [
@@ -34,7 +38,11 @@ class HomeController: UIViewController {
         "DarthVader",
         "Lasagna",
         "Turtle",
-        "Ocean"
+        "Ocean",
+        "jeff",
+        "michael",
+        "turtledrawing",
+        "spikeball"
     ]
     
     let images: [UIImage] = [
@@ -42,7 +50,11 @@ class HomeController: UIViewController {
         UIImage(named: "DarthVader")!,
         UIImage(named: "Lasagna")!,
         UIImage(named: "Turtle")!,
-        UIImage(named: "Ocean")!
+        UIImage(named: "Ocean")!,
+        UIImage(named: "jeff")!,
+        UIImage(named: "michael")!,
+        UIImage(named: "turtledrawing")!,
+        UIImage(named: "spikeball")!,
     ]
     
     let teamNames: [String] = [
@@ -50,8 +62,14 @@ class HomeController: UIViewController {
         "Team Mural",
         "Team MDB",
         "Team Oski",
-        "Team Cal"
+        "Team Cal",
+        "Team React",
+        "Team Berkeley",
+        "Team WDB",
+        "Team Michael"
     ]
+    
+    
     
     let cv: UICollectionView = {
         let cv = UICollectionView(frame: .zero, collectionViewLayout: {
@@ -110,6 +128,16 @@ class HomeController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        for i in 0..<prompts.count {
+            guard var url = try? FileManager.default.url(for: .applicationSupportDirectory, in: .userDomainMask, appropriateFor: nil, create: true) else {
+                return
+            }
+            url.append(path: prompts[i])
+            var image = images[i]
+            // image = image.resizeImageTo(size: CGSize(width: 393, height: 852))!
+            try! image.pngData()?.write(to: url)
+        }
+        
         self.currentPage = 0
         
         // Add prompt label
@@ -135,8 +163,8 @@ class HomeController: UIViewController {
         self.view.addSubview(cv)
         
         NSLayoutConstraint.activate([
-            cv.topAnchor.constraint(equalTo: self.view.centerYAnchor),
-            cv.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -150),
+            cv.topAnchor.constraint(equalTo: self.view.centerYAnchor, constant: -160),
+            cv.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -80),
             cv.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
             cv.leadingAnchor.constraint(equalTo: self.view.leadingAnchor)
         ])
@@ -144,6 +172,12 @@ class HomeController: UIViewController {
     
     func updateLabel() {
         self.label.text = self.currText
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        
+        cv.reloadData()
     }
 }
 
@@ -177,6 +211,8 @@ extension HomeController: UICollectionViewDelegate {
         let cell = collectionView.cellForItem(at: indexPath) as! ScreenPreviewView
         cell.hasBeenEdited = true
         let drawingVC = DrawingController()
+        drawingVC.modalPresentationStyle = .fullScreen
+        drawingVC.name = cell.prompt
     //        drawingVC.image = UIImage(named: self.imageNames[indexPath.item])
     //        self.navigationController?.pushViewController(drawingVC, animated: true)
         present(drawingVC, animated: true)
@@ -187,7 +223,7 @@ extension HomeController: UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
         {
-           return CGSize(width: 150.0, height: 200.0)
+            return CGSize(width: 176.85, height: 383.4)
         }
 }
 
