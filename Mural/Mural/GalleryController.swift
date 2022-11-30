@@ -94,18 +94,22 @@ class GalleryController: UIViewController {
                 
                 let drawings: UIStackView = {
                     let stack = UIStackView()
-                        stack.axis = .horizontal
+                    stack.axis = .horizontal
                     stack.spacing = 10.0
-                        stack.alignment = .fill
-                        stack.distribution = .fillEqually
+                    stack.alignment = .fill
+                    stack.distribution = .fillEqually
+                    stack.translatesAutoresizingMaskIntoConstraints = false
                     
                     var drawingViews: [UIView] = []
                     
                     for drawing in images {
                         let view: UIView = {
-                            let v = UIView()
-                            v.backgroundColor = UIColor(patternImage: drawing)
-                            view.heightAnchor.constraint(equalToConstant: 100).isActive = true
+                            let v = UIImageView()
+                            v.image = drawing
+                            v.contentMode = .scaleAspectFit
+//                            v.backgroundColor = UIColor(patternImage: drawing)
+                            v.translatesAutoresizingMaskIntoConstraints = false
+                            v.heightAnchor.constraint(equalToConstant: 200).isActive = true
                             return v
                         }()
                         
@@ -124,10 +128,10 @@ class GalleryController: UIViewController {
                 
                 view.addSubview(drawings)
                 NSLayoutConstraint.activate([
-                            label.topAnchor.constraint(equalTo: view.topAnchor, constant: 35),
-                            label.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
-                            label.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50)
-                        ])
+                        drawings.topAnchor.constraint(equalTo: view.topAnchor, constant: 50),
+                        drawings.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
+                        drawings.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50)
+                ])
                 
                 return view
             }()
