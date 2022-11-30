@@ -26,11 +26,15 @@ class HomeController: UIViewController {
         "Emily fighting Darth Vader",
         "Jennifer cooking lasagna",
         "A chill turtle",
-        "A day at the beach",
+//        "A day at the beach",
+        "Jeff gets COVID",
         "Jeff gets COVID",
         "Michael goes skiing",
         "Ethan draws turtle",
-        "Playing spikeball on the glade"
+        "Playing spikeball",
+        "dummy",
+        "dummy",
+        "dummy"
     ]
     
     let imageNames: [String] = [
@@ -38,7 +42,7 @@ class HomeController: UIViewController {
         "DarthVader",
         "Lasagna",
         "Turtle",
-        "Ocean",
+//        "Ocean",
         "jeff",
         "michael",
         "turtledrawing",
@@ -50,7 +54,7 @@ class HomeController: UIViewController {
         UIImage(named: "DarthVader")!,
         UIImage(named: "Lasagna")!,
         UIImage(named: "Turtle")!,
-        UIImage(named: "Ocean")!,
+//        UIImage(named: "Ocean")!,
         UIImage(named: "jeff")!,
         UIImage(named: "michael")!,
         UIImage(named: "turtledrawing")!,
@@ -66,9 +70,12 @@ class HomeController: UIViewController {
         "Team React",
         "Team Berkeley",
         "Team WDB",
-        "Team Michael"
+        "Team Michael",
+        "dummy",
+        "dummy"
     ]
     
+    var drawingImages: [drawingImage] = []
     
     
     let cv: UICollectionView = {
@@ -76,7 +83,7 @@ class HomeController: UIViewController {
             let layout = UPCarouselFlowLayout()
             layout.itemSize = CGSizeMake(150, 200)
             layout.scrollDirection = .horizontal
-            layout.spacingMode = UPCarouselFlowLayoutSpacingMode.fixed(spacing: 45)
+            layout.spacingMode = UPCarouselFlowLayoutSpacingMode.overlap(visibleOffset: 30.0)
             return layout
         }())
         cv.translatesAutoresizingMaskIntoConstraints = false
@@ -123,17 +130,22 @@ class HomeController: UIViewController {
             return pageSize
         }
     
-    
+    override func viewWillAppear(_ animated: Bool) {
+        for i in 0..<imageNames.count {
+            let dI = drawingImage(name: imageNames[i], prompt: prompts[i], team: teamNames[i])
+            drawingImages.append(dI)
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        for i in 0..<prompts.count {
+        for i in 0..<images.count {
             guard var url = try? FileManager.default.url(for: .applicationSupportDirectory, in: .userDomainMask, appropriateFor: nil, create: true) else {
                 return
             }
             url.append(path: prompts[i])
-            var image = images[i]
+            let image = images[i%images.count]
             // image = image.resizeImageTo(size: CGSize(width: 393, height: 852))!
             try! image.pngData()?.write(to: url)
         }
@@ -188,9 +200,10 @@ extension HomeController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DrawingCell", for: indexPath) as! ScreenPreviewView
-        cell.prompt = self.prompts[indexPath.item]
-        cell.name = self.imageNames[indexPath.item]
-        cell.team = self.teamNames[indexPath.item]
+        cell.drawing = drawingImages[indexPath.item]
+//        cell.prompt = self.prompts[indexPath.item]
+//        cell.name = self.imageNames[indexPath.item]
+//        cell.team = self.teamNames[indexPath.item]
         cell.setImage()
         
         cell.layer.borderColor = .init(red: 1.0, green: 210/255.0, blue: 95/255.0, alpha: 1.0)
@@ -211,9 +224,8 @@ extension HomeController: UICollectionViewDelegate {
         let cell = collectionView.cellForItem(at: indexPath) as! ScreenPreviewView
         cell.hasBeenEdited = true
         let drawingVC = DrawingController()
-        drawingVC.promptLabel.text = cell.prompt
         drawingVC.modalPresentationStyle = .fullScreen
-        drawingVC.name = cell.prompt
+        drawingVC.promptLabel.text = cell.drawing!.prompt
     //        drawingVC.image = UIImage(named: self.imageNames[indexPath.item])
     //        self.navigationController?.pushViewController(drawingVC, animated: true)
         present(drawingVC, animated: true)
@@ -235,5 +247,21 @@ extension HomeController: UIScrollViewDelegate {
             let offset = (layout.scrollDirection == .horizontal) ? scrollView.contentOffset.x : scrollView.contentOffset.y
             currentPage = Int(floor((offset - pageSide / 2) / pageSide) + 1)
         }
+}
+
+struct drawingImage {
+    
+    var name: String
+    var prompt: String
+    var team: String
+    var hasBeenEdited: Bool
+    
+    init(name:String, prompt:String, team:String) {
+        self.name = name
+        self.prompt = prompt
+        self.team = team
+        self.hasBeenEdited = false
+    }
+    
 }
 

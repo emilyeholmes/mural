@@ -47,6 +47,7 @@ class DrawingController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        name = promptLabel.text
         view.backgroundColor = .white
         
         guard var url = try? FileManager.default.url(for: .applicationSupportDirectory, in: .userDomainMask, appropriateFor: nil, create: true) else {
@@ -57,7 +58,16 @@ class DrawingController: UIViewController {
         
         if let data = try? Data(contentsOf: url) {
             oldDrawing = UIImage(data: data)
-            view.insertSubview(UIImageView(image: oldDrawing), belowSubview: canvasView)
+            var backgroundView = UIImageView(image: oldDrawing)
+            backgroundView.contentMode = .scaleToFill
+            backgroundView.translatesAutoresizingMaskIntoConstraints = false
+            view.insertSubview(backgroundView, belowSubview: canvasView)
+            NSLayoutConstraint.activate([
+                backgroundView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+                backgroundView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                backgroundView.topAnchor.constraint(equalTo: view.topAnchor),
+                backgroundView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            ])
         }
         
         // Set imageView to the image stored in file system
@@ -142,4 +152,3 @@ class DrawingController: UIViewController {
         })
     }
 }
-

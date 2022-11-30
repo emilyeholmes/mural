@@ -10,10 +10,11 @@ import UIKit
 
 class ScreenPreviewView: UICollectionViewCell {
     
-    var prompt: String?
-    var name: String?
-    var team: String?
+//    var prompt: String?
+//    var name: String?
+//    var team: String?
     var hasBeenEdited: Bool
+    var drawing: drawingImage?
     
     let iv: UIImageView = {
         let iv = UIImageView()
@@ -55,12 +56,12 @@ class ScreenPreviewView: UICollectionViewCell {
     func setImage() {
         
         
-        label.text = self.team!
+        label.text = self.drawing!.team
         // TODO: Fetch the image with `FileManager`, if that doesn't exist
         guard var url = try? FileManager.default.url(for: .applicationSupportDirectory, in: .userDomainMask, appropriateFor: nil, create: true) else {
             return
         }
-        url.append(path: prompt!)
+        url.append(path: drawing!.prompt)
         
         if let data = try? Data(contentsOf: url) {
             iv.image = UIImage(data: data)
