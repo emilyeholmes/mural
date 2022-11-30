@@ -9,10 +9,22 @@ import UIKit
 
 class StartVC: UIViewController {
     
+    let teams: [String] = [
+        "iOS",
+        "MDB",
+        "Oski"
+    ]
+    
+    let images: [UIImage] = [
+        UIImage(named: "Dinosaur")!,
+        UIImage(named: "DarthVader")!,
+        UIImage(named: "Lasagna")!,
+        UIImage(named: "Turtle")!,
+        UIImage(named: "Ocean")!
+    ]
+    
     private let plusButton: UIButton = {
         let button = UIButton()
-
-//        button.setTitle("Start", for: .normal)
 
         button.setTitleColor(.blue, for: .normal)
 
@@ -30,22 +42,6 @@ class StartVC: UIViewController {
         return button
     }()
     
-//    private let teamLabel: UILabel = {
-//        let label = UILabel()
-//
-//        label.textColor = .darkGray
-//
-//        label.text = "Placeholder"
-//
-//        label.textAlignment = .left
-//
-//        label.font = .systemFont(ofSize: 27, weight: .medium)
-//
-//        label.translatesAutoresizingMaskIntoConstraints = false
-//
-//        return label
-//    }()
-    
     let scrollView: UIScrollView = {
             let scrollView = UIScrollView()
 
@@ -60,94 +56,6 @@ class StartVC: UIViewController {
         view.spacing = 10
 
         view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-
-    let redView: UIView = {
-        let view = UIView()
-        view.heightAnchor.constraint(equalToConstant: 300).isActive = true
-//        view.backgroundColor = .red
-        
-        let label: UILabel = {
-            let l = UILabel(frame: .zero)
-            l.font = UIFont(name: "Futura-Medium", size: 20.0)
-            l.textColor = .init(red: 117/255.0, green: 115/255.0, blue: 210/255.0, alpha: 1.0)
-            l.numberOfLines = 0
-            l.translatesAutoresizingMaskIntoConstraints = false
-            l.text = "Team MDB"
-            return l
-        }()
-//        let label = UILabel()
-//        label.textColor = .black
-//        label.text = "Team MDB"
-//        label.translatesAutoresizingMaskIntoConstraints = false
-        
-        view.addSubview(label)
-        NSLayoutConstraint.activate([
-                    label.topAnchor.constraint(equalTo: view.topAnchor, constant: 20),
-                    label.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
-                    label.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50)
-                ])
-        
-        return view
-    }()
-
-    let blueView: UIView = {
-        let view = UIView()
-        view.heightAnchor.constraint(equalToConstant: 300).isActive = true
-//        view.backgroundColor = .red
-        
-        let label: UILabel = {
-            let l = UILabel(frame: .zero)
-            l.font = UIFont(name: "Futura-Medium", size: 20.0)
-            l.textColor = .init(red: 117/255.0, green: 115/255.0, blue: 210/255.0, alpha: 1.0)
-            l.numberOfLines = 0
-            l.translatesAutoresizingMaskIntoConstraints = false
-            l.text = "Team iOS"
-            return l
-        }()
-//        let label = UILabel()
-//        label.textColor = .black
-//        label.text = "Team iOS"
-//        label.translatesAutoresizingMaskIntoConstraints = false
-        
-        view.addSubview(label)
-        NSLayoutConstraint.activate([
-                    label.topAnchor.constraint(equalTo: view.topAnchor, constant: 20),
-                    label.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
-                    label.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50)
-                ])
-        
-        return view
-    }()
-
-    let greenView: UIView = {
-        let view = UIView()
-        view.heightAnchor.constraint(equalToConstant: 300).isActive = true
-//        view.backgroundColor = .red
-        
-        let label: UILabel = {
-            let l = UILabel(frame: .zero)
-            l.font = UIFont(name: "Futura-Medium", size: 20.0)
-            l.textColor = .init(red: 117/255.0, green: 115/255.0, blue: 210/255.0, alpha: 1.0)
-            l.numberOfLines = 0
-            l.translatesAutoresizingMaskIntoConstraints = false
-            l.text = "Team React"
-            return l
-        }()
-        
-//        let label = UILabel()
-//        label.textColor = .black
-//        label.text = "Team React"
-//        label.translatesAutoresizingMaskIntoConstraints = false
-        
-        view.addSubview(label)
-        NSLayoutConstraint.activate([
-                    label.topAnchor.constraint(equalTo: view.topAnchor, constant: 20),
-                    label.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
-                    label.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50)
-                ])
-        
         return view
     }()
     
@@ -166,9 +74,65 @@ class StartVC: UIViewController {
     
         view.addSubview(scrollView)
         scrollView.addSubview(scrollViewContainer)
-        scrollViewContainer.addArrangedSubview(redView)
-        scrollViewContainer.addArrangedSubview(blueView)
-        scrollViewContainer.addArrangedSubview(greenView)
+        
+        for teamName in teams {
+            
+            let view: UIView = {
+                
+                let view = UIView()
+                view.heightAnchor.constraint(equalToConstant: 300).isActive = true
+                
+                let label: UILabel = {
+                    let l = UILabel(frame: .zero)
+                    l.font = UIFont(name: "Futura-Medium", size: 20.0)
+                    l.textColor = .init(red: 117/255.0, green: 115/255.0, blue: 210/255.0, alpha: 1.0)
+                    l.numberOfLines = 0
+                    l.translatesAutoresizingMaskIntoConstraints = false
+                    l.text = "Team " + teamName
+                    return l
+                }()
+                
+                let drawings: UIStackView = {
+                    let stack = UIStackView()
+                        stack.axis = .horizontal
+                    stack.spacing = 10.0
+                        stack.alignment = .fill
+                        stack.distribution = .fillEqually
+                    
+                    var drawingViews: [UIView] = []
+                    
+                    for drawing in images {
+                        let view: UIView = {
+                            let v = UIView()
+                            v.backgroundColor = UIColor(patternImage: drawing)
+                            return v
+                        }()
+                        
+                        drawingViews.append(view)
+                    }
+                        drawingViews.forEach { stack.addArrangedSubview($0) } // [1]
+                        return stack
+                }()
+                
+                view.addSubview(label)
+                NSLayoutConstraint.activate([
+                            label.topAnchor.constraint(equalTo: view.topAnchor, constant: 20),
+                            label.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
+                            label.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50)
+                        ])
+                
+                view.addSubview(drawings)
+                NSLayoutConstraint.activate([
+                            label.topAnchor.constraint(equalTo: view.topAnchor, constant: 35),
+                            label.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
+                            label.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50)
+                        ])
+                
+                return view
+            }()
+            
+            scrollViewContainer.addArrangedSubview(view)
+        }
         
         NSLayoutConstraint.activate([
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -177,12 +141,14 @@ class StartVC: UIViewController {
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
 
-        scrollViewContainer.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor).isActive = true
-        scrollViewContainer.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor).isActive = true
-        scrollViewContainer.topAnchor.constraint(equalTo: scrollView.topAnchor).isActive = true
-        scrollViewContainer.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
-        // this is important for scrolling
-        scrollViewContainer.widthAnchor.constraint(equalTo: scrollView.widthAnchor).isActive = true
+        NSLayoutConstraint.activate([
+            scrollViewContainer.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            scrollViewContainer.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            scrollViewContainer.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            scrollViewContainer.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            // this is important for scrolling
+            scrollViewContainer.widthAnchor.constraint(equalTo: scrollView.widthAnchor)
+        ])
     }
 
 
