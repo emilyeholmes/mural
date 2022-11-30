@@ -27,7 +27,6 @@ class HomeController: UIViewController {
         "Jennifer cooking lasagna",
         "A chill turtle",
         "A day at the beach",
-        "A day at the beach",
         "Jeff gets COVID",
         "Michael goes skiing",
         "Ethan draws turtle",
@@ -84,7 +83,7 @@ class HomeController: UIViewController {
             let layout = UPCarouselFlowLayout()
             layout.itemSize = CGSizeMake(150, 200)
             layout.scrollDirection = .horizontal
-            layout.spacingMode = UPCarouselFlowLayoutSpacingMode.overlap(visibleOffset: 30.0)
+            layout.spacingMode = UPCarouselFlowLayoutSpacingMode.overlap(visibleOffset: 60.0)
             return layout
         }())
         cv.translatesAutoresizingMaskIntoConstraints = false
@@ -246,8 +245,11 @@ extension HomeController: UIScrollViewDelegate {
             let layout = self.cv.collectionViewLayout as! UPCarouselFlowLayout
             let pageSide = (layout.scrollDirection == .horizontal) ? self.pageSize.width : self.pageSize.height
             let offset = (layout.scrollDirection == .horizontal) ? scrollView.contentOffset.x : scrollView.contentOffset.y
-            currentPage = Int(floor((offset - pageSide / 2) / pageSide) + 1)
+        currentPage = Int(floor((offset / 238))) + 1
+        if offset < 100 {
+            currentPage = 0
         }
+    }
 }
 
 struct drawingImage {
