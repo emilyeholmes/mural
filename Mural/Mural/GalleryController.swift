@@ -1,3 +1,4 @@
+//
 //  GalleryController.swift
 //  Mural
 //
@@ -6,7 +7,7 @@
 
 import UIKit
 
-class GalleryController: UIViewController {
+class StartVC: UIViewController {
     
     private let plusButton: UIButton = {
         let button = UIButton()
@@ -19,8 +20,8 @@ class GalleryController: UIViewController {
         config.image = UIImage(systemName: "plus")
         config.imagePadding = 10
         config.buttonSize = .small
-        config.baseForegroundColor = .systemBlue
-        config.baseBackgroundColor = .systemBlue
+        config.baseForegroundColor = .init(red: 117/255.0, green: 115/255.0, blue: 210/255.0, alpha: 1.0)
+        config.baseBackgroundColor = .init(red: 117/255.0, green: 115/255.0, blue: 210/255.0, alpha: 1.0)
 
         button.configuration = config
 
@@ -67,10 +68,19 @@ class GalleryController: UIViewController {
         view.heightAnchor.constraint(equalToConstant: 300).isActive = true
 //        view.backgroundColor = .red
         
-        let label = UILabel()
-        label.textColor = .black
-        label.text = "Team MDB"
-        label.translatesAutoresizingMaskIntoConstraints = false
+        let label: UILabel = {
+            let l = UILabel(frame: .zero)
+            l.font = UIFont(name: "Futura-Medium", size: 20.0)
+            l.textColor = .init(red: 117/255.0, green: 115/255.0, blue: 210/255.0, alpha: 1.0)
+            l.numberOfLines = 0
+            l.translatesAutoresizingMaskIntoConstraints = false
+            l.text = "Team MDB"
+            return l
+        }()
+//        let label = UILabel()
+//        label.textColor = .black
+//        label.text = "Team MDB"
+//        label.translatesAutoresizingMaskIntoConstraints = false
         
         view.addSubview(label)
         NSLayoutConstraint.activate([
@@ -87,10 +97,19 @@ class GalleryController: UIViewController {
         view.heightAnchor.constraint(equalToConstant: 300).isActive = true
 //        view.backgroundColor = .red
         
-        let label = UILabel()
-        label.textColor = .black
-        label.text = "Team iOS"
-        label.translatesAutoresizingMaskIntoConstraints = false
+        let label: UILabel = {
+            let l = UILabel(frame: .zero)
+            l.font = UIFont(name: "Futura-Medium", size: 20.0)
+            l.textColor = .init(red: 117/255.0, green: 115/255.0, blue: 210/255.0, alpha: 1.0)
+            l.numberOfLines = 0
+            l.translatesAutoresizingMaskIntoConstraints = false
+            l.text = "Team iOS"
+            return l
+        }()
+//        let label = UILabel()
+//        label.textColor = .black
+//        label.text = "Team iOS"
+//        label.translatesAutoresizingMaskIntoConstraints = false
         
         view.addSubview(label)
         NSLayoutConstraint.activate([
@@ -107,10 +126,20 @@ class GalleryController: UIViewController {
         view.heightAnchor.constraint(equalToConstant: 300).isActive = true
 //        view.backgroundColor = .red
         
-        let label = UILabel()
-        label.textColor = .black
-        label.text = "Team React"
-        label.translatesAutoresizingMaskIntoConstraints = false
+        let label: UILabel = {
+            let l = UILabel(frame: .zero)
+            l.font = UIFont(name: "Futura-Medium", size: 20.0)
+            l.textColor = .init(red: 117/255.0, green: 115/255.0, blue: 210/255.0, alpha: 1.0)
+            l.numberOfLines = 0
+            l.translatesAutoresizingMaskIntoConstraints = false
+            l.text = "Team React"
+            return l
+        }()
+        
+//        let label = UILabel()
+//        label.textColor = .black
+//        label.text = "Team React"
+//        label.translatesAutoresizingMaskIntoConstraints = false
         
         view.addSubview(label)
         NSLayoutConstraint.activate([
