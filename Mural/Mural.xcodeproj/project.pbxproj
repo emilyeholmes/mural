@@ -21,6 +21,7 @@
 		B044833C29349F4900625078 /* ScreenPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B044833B29349F4900625078 /* ScreenPreviewView.swift */; };
 		B044833E2934A1E900625078 /* UPCarouselFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B044833D2934A1E900625078 /* UPCarouselFlowLayout.swift */; };
 		B04483402934A8C400625078 /* TabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B044833F2934A8C400625078 /* TabController.swift */; };
+		CB356F9029372F3E00D2DF6B /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB356F8F29372F3E00D2DF6B /* UIImageExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		B044833B29349F4900625078 /* ScreenPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenPreviewView.swift; sourceTree = "<group>"; };
 		B044833D2934A1E900625078 /* UPCarouselFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UPCarouselFlowLayout.swift; sourceTree = "<group>"; };
 		B044833F2934A8C400625078 /* TabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabController.swift; sourceTree = "<group>"; };
+		CB356F8F29372F3E00D2DF6B /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +91,7 @@
 		B04482FB293475B600625078 = {
 			isa = PBXGroup;
 			children = (
+				CB356F8E29372F1B00D2DF6B /* Extensions */,
 				B0448306293475B600625078 /* Mural */,
 				B044831D293475BA00625078 /* MuralTests */,
 				B0448327293475BA00625078 /* MuralUITests */,
@@ -140,6 +143,14 @@
 				B044832A293475BA00625078 /* MuralUITestsLaunchTests.swift */,
 			);
 			path = MuralUITests;
+			sourceTree = "<group>";
+		};
+		CB356F8E29372F1B00D2DF6B /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				CB356F8F29372F3E00D2DF6B /* UIImageExtension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -272,6 +283,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CB356F9029372F3E00D2DF6B /* UIImageExtension.swift in Sources */,
 				B044833C29349F4900625078 /* ScreenPreviewView.swift in Sources */,
 				B04483402934A8C400625078 /* TabController.swift in Sources */,
 				B044833A29349D5A00625078 /* GalleryController.swift in Sources */,
